@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Cortaly - URL Shortner HTML Template</title>
+    {% include 'apps/parts/styles.html' %}
+</head>
+<body>
+<!--============= Header Section Starts Here =============-->
+<header class="header-section">
+    <div class="container">
+        <div class="header-wrapper">
+            <div class="logo">
+                <a href="{% url 'form_view' %}">
+                    <img src="{% static 'apps/assets/images/logo/logo.png' %}" alt="logo">
+                </a>
+            </div>
+            <ul class="menu">
+                <li>
+                    <a href="{% url 'form_view' %}">Home</a>
+                </li>
+                <li class="d-sm-none text-center">
+                    <a href="{% url 'sign_in_view' %}" class="header-button active">Login</a>
+                </li>
+                <li class="d-sm-none text-center">
+                    <a href="{% url 'sign_up_view' %}" class="mb-4 header-button">Register</a>
+                </li>
+            </ul>
+            <div class="header-right">
+                {% if not user.is_authenticated %}
+                    <a href="{% url 'sign_in_view' %}" class="header-button d-none d-sm-inline-block m-0 active">Login</a>
+                    <a href="{% url 'sign_up_view' %}" class="header-button d-none d-sm-inline-block m-0">Register</a>
+                {% else %}
+                    <a href="{% url 'log_out_view' %}" class="header-button d-none d-sm-inline-block m-0">log Out</a>
+
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</header>
+<!--============= Header Section Ends Here =============-->
+<!--============= ScrollToTop Section Starts Here =============-->
+<a href="#" class="scrollToTop"><i class="fas fa-angle-up"></i></a>
+<div class="overlay"></div>
+<!--============= ScrollToTop Section Ends Here =============-->
+
+
+{% block body_content %}
+
+{% endblock %}
+
+{% include 'apps/parts/scripts.html' %}
+</body>
+
+</html>

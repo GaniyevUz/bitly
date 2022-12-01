@@ -1,0 +1,93 @@
+{% extends 'apps/parts/layout.html' %}
+{% load static %}
+{% block body_content %}
+    <!--============= Page Header Section Starts Here =============-->
+    <section class="page-header">
+        <div class="banner-bg bg_img" data-background="{% static 'apps/assets/images/banner/banner-bg.jpg' %}"
+             style="background-image: url({% static 'apps/assets/images/banner/banner-bg.jpg' %});">
+            <div class="banner-bg-shape"><img src="{% static 'apps/assets/images/banner/banner-shape.png' %}"
+                                              alt="banner"></div>
+            <div class="round-1">
+                <img src="{% static 'apps/assets/images/banner/01.png' %}" alt="banner">
+            </div>
+            <div class="round-2">
+                <img src="{% static 'apps/assets/images/banner/02.png' %}" alt="banner">
+            </div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="title">Shorted Links</h1>
+            </div>
+        </div>
+    </section>
+    <!--============= Page Header Section Ends Here =============-->
+
+    <!--============= Payout Section Starts Here =============-->
+    <section class="payout-section padding-top padding-bottom">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 col-xl-8">
+                    <div class="section-header mw-100">
+                        <h5 class="cate">PAYOUT RATES</h5>
+                        <h2 class="title">We offer you the best</h2>
+                        <p>We pay for ALL legitimate visitor you bring to your links. Multiple views from the same
+                            viewer are also counted thus you will be benefiting from all your traffic.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="payout-wrapper">
+                <div class="payout-area">
+                    <ul class="payout-header">
+                        <li>
+                            <div class="content m-auto">
+                                <h5>Original url</h5>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="content m-auto">
+                                <h5>Short Name</h5>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="content m-auto">
+                                <h5>Clicked Count</h5>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="payout-rates">
+                        {% for link in links %}
+                            <li>
+                                <div class="payout-contry">
+                                    <div class="content"><a href="{{ link.long_name }}"
+                                                            target="_blank">{{ link.long_name|truncatechars:30 }}</a>
+                                    </div>
+                                </div>
+                                <div class="dextop-amount"><a href="{{ current_site }}/b/{{ link.short_name }}"
+                                                              target="_blank">{{ link.short_name }}</a></div>
+                                <div class="mobile-amount">{{ link.clicked_count }}</div>
+                            </li>
+                        {% endfor %}
+                        <li>
+                            <div class="payout-contry">
+                                {% if page_obj.has_previous %}
+                                    <div class="content">
+                                        <a href="{% url 'links_view' page_obj.previous_page_number %}">Previous Page</a>
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="dextop text-black-50">
+                                Showing {{ links.count }} out of {{ paginator.count }}
+                            </div>
+                            <div class="mobile-amount">
+                                {% if page_obj.has_next %}
+                                    <a href="{% url 'links_view' page_obj.next_page_number %}">Next Page</a>
+                                {% endif %}
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--============= Payout Section Ends Here =============-->
+{% endblock %}

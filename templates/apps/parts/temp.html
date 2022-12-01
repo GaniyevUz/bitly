@@ -1,0 +1,16 @@
+{% extends 'apps/parts/layout.html' %}
+{% load static %}
+{% block body_content %}
+    <!--============= Sign In Section Starts Here =============-->
+    <div class="account-section bg_img" data-background="{% static 'apps/assets/images/account-bg.jpg' %}">
+        <div class="container">
+            <div class="account-title text-center p-2"></div>
+            <div class="account-wrapper">
+                <div class="account-body">
+                    <h4 class="title mb-20">{{ context }}</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--============= Sign In Section Ends Here =============-->
+{% endblock %}

@@ -1,0 +1,167 @@
+{% extends 'apps/parts/layout.html' %}
+{% load static %}
+
+{% block body_content %}
+    <!--============= Banner Section Starts Here =============-->
+    <section class="banner-section">
+        <div class="banner-bg bg_img" data-background="{% static 'apps/assets/images/banner/banner-bg.jpg' %}">
+            <div class="banner-bg-shape"><img src="{% static 'apps/assets/images/banner/banner-shape.png' %}"
+                                              alt="banner">
+            </div>
+            <div class="round-1">
+                <img src="{% static 'apps/assets/images/banner/01.png' %}" alt="banner">
+            </div>
+            <div class="round-2">
+                <img src="{% static 'apps/assets/images/banner/02.png' %}" alt="banner">
+            </div>
+        </div>
+        <div class="container">
+            <div class="banner-content">
+                {% if user.is_authenticated %}
+                    <h3 class="cate">Hi, {{ user.username }}</h3>
+                {% endif %}
+                <h3 class="title">SHORT URLS</h3>
+                <p>Transforming long, ugly links into Shorten URLs and earn big money. Get paid by every person who
+                    visits
+                    your URLs.</p>
+            </div>
+
+            <div class="banner-form-group">
+                <h3 class="subtitle">Shorten URL Is Just Simple</h3>
+                <h3 class="subtitle" style="color: #4eff4e;"><a href="{{ short_name }}">{{ short_name }}</a></h3>
+                <form class="banner-form" action="{% url 'form_view' %}" method="post">
+                    {% csrf_token %}
+                    <input type="url" placeholder="Your URL here" name="long_name" required>
+                    <button type="submit">Shorten <i class="flaticon-startup"></i></button>
+                </form>
+                <div class="banner-counter">
+                    <div class="counter-item">
+                        <h2 class="counter-title"><span class="counter">{{ clicked_total }}</span>+</h2>
+                        <p>Links clicked in total</p>
+                    </div>
+                    <div class="counter-item">
+                        <h2 class="counter-title"><span class="counter">{{ total_links }}</span>+</h2>
+                        <p>Shortened links in total</p>
+                    </div>
+                    <div class="counter-item">
+                        <h2 class="counter-title"><span class="counter">{{ users_count }}</span>+</h2>
+                        <p>Happy users registered</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--============= Banner Section Ends Here =============-->
+
+
+    <!--============= How Section Starts Here =============-->
+    <section class="how-section padding-top padding-bottom pt-md-half pb-max-lg-0">
+        <div class="container">
+            <div class="section-header mb-low">
+                <h2 class="title mb-0">How to start</h2>
+            </div>
+            <div class="row justify-content-center mb--40">
+                <div class="col-lg-4 col-md-6 col-sm-10">
+                    <div class="how-item">
+                        <div class="how-thumb">
+                            <img src="{% static 'apps/assets/images/how/how1.png' %}" alt="how">
+                        </div>
+                        <div class="how-content">
+                            <h6 class="title">CREATE AN ACCOUNT</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-10">
+                    <div class="how-item">
+                        <div class="how-thumb">
+                            <img src="{% static 'apps/assets/images/how/how2.png' %}" alt="how">
+                        </div>
+                        <div class="how-content">
+                            <h6 class="title">SHORTEN YOUR LINK</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-10">
+                    <div class="how-item">
+                        <div class="how-thumb">
+                            <img src="{% static 'apps/assets/images/how/how3.png' %}" alt="how">
+                        </div>
+                        <div class="how-content">
+                            <h6 class="title">Track Your Urls</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--============= How Section Ends Here =============-->
+
+
+    <!--============= Footer Section Starts Here =============-->
+    <footer class="footer-section padding-top">
+        <div class="footer-bg bg_img" data-background="{% static 'apps/assets/images/footer/footer-bg.jpg' %}"></div>
+        <div class="footer-bg d-md-block d-none"><img src="{% static 'apps/assets/images/footer/wave.png' %}"
+                                                      alt="footer">
+        </div>
+        <div class="container">
+            <div class="section-header cl-white-499">
+                <h5 class="cate">Contact Us</h5>
+                <h2 class="title">Get in touch!</h2>
+                <p>We thrive to ensure that you get the most out of your experience</p>
+            </div>
+            <form class="contact-form" method="post" action="{% url 'send_mail_view' %}" id="contact_form_submit">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label for="name">Your Full Name</label>
+                    <input type="text" name="name" id="name" placeholder="Enter Your Full Name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Your Email</label>
+                    <input type="text" name="email" id="email" placeholder="Enter Your Email">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea name="message" id="message" placeholder="Enter Your Message"></textarea>
+                </div>
+                <div class="form-group check-group">
+                    <input type="checkbox" id="check" required>
+                    <label for="check">I agree to receive emails, newsletters and promotional messages</label>
+                </div>
+                <div class="form-group text-center">
+                    <button type="submit">Send Message</button>
+                </div>
+            </form>
+            <div class="footer-bottom">
+                <div class="footer-bottom-area">
+                    <div class="left cl-white">
+                        <p>&copy; Copyright 2020 | <a href="#">Cortaly</a> By UIAXIS</p>
+                    </div>
+                    <ul class="social-icons">
+                        <li>
+                            <a href="#" class="active">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="">
+                                <i class="fab fa-pinterest-p"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--============= Footer Section Ends Here =============-->
+{% endblock %}
