@@ -29,7 +29,10 @@ class MainFormView(FormView):
 
     def form_valid(self, form):
         url = form.save()
-        url = f'{get_current_site(self.request)}/b/{url.short_name}'
+        site = get_current_site(self.request).domain
+        if not site.startswith('http'):
+            site = 'http://' + site
+        url = f'{site}/b/{url.short_name}'
         context = {
             'short_name': url,
         }
