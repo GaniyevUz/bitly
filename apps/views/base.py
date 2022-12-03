@@ -59,4 +59,6 @@ class ShortView(View):
     def get(self, request, name, *args, **kwargs):
         url = Url.objects.get(short_name=name)
         # url = get_object_or_404(Url.objects.all(), short_name=name)
+        url.clicked_count += 1
+        url.save()
         return HttpResponseRedirect(url.long_name)

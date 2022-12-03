@@ -35,6 +35,7 @@
                     <a href="{% url 'sign_in_view' %}" class="header-button d-none d-sm-inline-block m-0 active">Login</a>
                     <a href="{% url 'sign_up_view' %}" class="header-button d-none d-sm-inline-block m-0">Register</a>
                 {% else %}
+                    <a href="{% url 'links_view'  %}" class="header-button d-none d-sm-inline-block m-0 active">My Links</a>
                     <a href="{% url 'log_out_view' %}" class="header-button d-none d-sm-inline-block m-0">log Out</a>
 
                 {% endif %}
