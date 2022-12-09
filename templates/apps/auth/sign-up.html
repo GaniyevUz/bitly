@@ -8,20 +8,20 @@
             <div class="account-wrapper">
                 <div class="account-header">
                     <h4 class="title">Let's get started</h4>
-                    <a href="#" class="sign-in-with">
-                        <img src="{% static 'apps/assets/images/icon/google.png' %}" alt="icon">
-                        <span>Sign Up with Google</span>
-                    </a>
+{#                    <a href="#" class="sign-in-with">#}
+{#                        <img src="{% static 'apps/assets/images/icon/google.png' %}" alt="icon">#}
+{#                        <span>Sign Up with Google</span>#}
+{#                    </a>#}
                 </div>
-                <div class="or">
-                    <span>OR</span>
-                </div>
+{#                <div class="or">#}
+{#                    <span>OR</span>#}
+{#                </div>#}
                 <div class="account-body">
                     {% for error in errors %}
                         <h3>{{ error }}</h3>
                     {% endfor %}
 
-                    <span class="d-block mb-20">Sign up with your work email</span>
+{#                    <span class="d-block mb-20">Sign up with your work email</span>#}
                     <form class="account-form" method="post" action="{% url 'sign_up_view' %}">
                         {% csrf_token %}
                         <div class="form-group">
